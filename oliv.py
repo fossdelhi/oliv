@@ -39,7 +39,3 @@ def oliv():
     pickup_config_files()
     pickup_python_packages()
     pickup_installed_packages()
-
-
-if __name__ == '__main__':
-    oliv()
