@@ -1,3 +1,3 @@
-# DATES HERE
+# Feb 17, 2019
 
-- add changeset message here
+- Add initial setup
