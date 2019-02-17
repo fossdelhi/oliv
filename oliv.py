@@ -33,9 +33,20 @@ def pickup_installed_packages():
             fwrite.write(list_of_packages[i])
 
 
+def system_setup():
+    pass
+
+
 @click.command()
-def oliv():
-    subprocess.call(['mkdir', './dotfile'])
-    pickup_config_files()
-    pickup_python_packages()
-    pickup_installed_packages()
+@click.option('--make', '-m', nargs=2, type=str,
+              help="To make your oliv_dotfile setup")
+@click.option('--setup', '-s', nargs=2, type=str,
+              help="To configure your system with your oliv_dotfile setup")
+def oliv(make, setup):
+    if make:
+        subprocess.call(['mkdir', './dotfile'])
+        pickup_config_files()
+        pickup_python_packages()
+        pickup_installed_packages()
+    elif setup and os.path.isdir('./oliv_dotfile'):
+        system_setup()
