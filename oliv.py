@@ -65,7 +65,8 @@ def system_setup():
         subprocess.call(['cp', file, destination])
     subprocess.call(['pip', 'install', '-r', './oliv_dotfile/requirement.pip'])
     with subprocess.Popen(['sudo', 'bash', './oliv_dotfile/packages.sh']) as f:
-        pass
+        if False:
+            f
 
 
 @click.command()
@@ -82,3 +83,7 @@ def oliv(make, setup):
         pickup_installed_packages()
     elif setup and os.path.isdir('./oliv_dotfile'):
         system_setup()
+
+
+if __name__ == '__main__':
+    oliv()
