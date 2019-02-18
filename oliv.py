@@ -2,6 +2,7 @@ import click
 import subprocess
 import os
 import shutil
+import glob
 
 
 def pickup_dotconfig():
@@ -55,7 +56,16 @@ def pickup_installed_packages():
 
 
 def system_setup():
-    pass
+    user = os.path.expanduser('~')
+    source = './oliv_dotfile/.*'
+    files = glob.glob(source)
+    destination = user + '/'
+    subprocess.call(['cp', '-r', './oliv_dotfile/.config', destination])
+    for file in files:
+        subprocess.call(['cp', file, destination])
+    subprocess.call(['pip', 'install', '-r', './oliv_dotfile/requirement.pip'])
+    with subprocess.Popen(['sudo', 'bash', './oliv_dotfile/packages.sh']) as f:
+        pass
 
 
 @click.command()
@@ -72,4 +82,3 @@ def oliv(make, setup):
         pickup_installed_packages()
     elif setup and os.path.isdir('./oliv_dotfile'):
         system_setup()
-
